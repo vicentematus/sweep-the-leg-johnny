@@ -1,5 +1,6 @@
 import { compactConversation, defaultOptions } from "./compactor";
 import { findConversation, readConversations } from "./dataset";
+import { evaluateCompaction } from "./evals";
 import { mkdir } from "node:fs/promises";
 import { dirname } from "node:path";
 
@@ -19,8 +20,13 @@ async function main() {
   }
 
   const result = await compactConversation(conversation);
+  const evals = evaluateCompaction({ conversation, result });
+  const output = {
+    ...result,
+    evals,
+  };
 
-  const json = `${JSON.stringify(result, null, 2)}\n`;
+  const json = `${JSON.stringify(output, null, 2)}\n`;
   if (args.output) {
     await mkdir(dirname(args.output), { recursive: true });
     await Bun.write(args.output, json);
@@ -73,7 +79,7 @@ Options:
 
 Environment:
   ANTHROPIC_API_KEY         Required for LLM compaction
-  ANTHROPIC_MODEL           Default: ${defaultOptions.model}
+  ANTHROPIC_MODEL           Default: claude-haiku-4-5
   PRESERVED_TAIL_MESSAGES   Default: ${defaultOptions.preservedTailMessages}
 `);
 }

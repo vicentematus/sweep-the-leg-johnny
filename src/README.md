@@ -6,7 +6,7 @@ The compactor follows the strategy from `../HEURISTICS.md`:
 
 1. Send the system prompt and full conversation to Claude with explicit HeyMark importance heuristics.
 2. Preserve the recent tail messages verbatim.
-3. Validate the result against dataset anchors after compaction.
+3. Run lightweight eval checks against dataset anchors after compaction.
 
 ## Setup
 
@@ -37,7 +37,7 @@ bun run index.ts --help
 
 ## Output
 
-The output follows the challenge shape and adds metadata for debugging:
+`compactConversation()` returns the challenge shape plus generation metadata:
 
 ```ts
 {
@@ -48,13 +48,20 @@ The output follows the challenge shape and adds metadata for debugging:
     profile: string;
     model: string;
     preserved_message_indexes: number[];
-      validation: {
-        missing_asset_ids: string[];
-        possibly_missing_critical_facts: string[];
-        warnings: string[];
-    };
   };
 }
 ```
 
-`anchors` are only used by validation when present in the dataset; they are not used to generate the summary.
+The CLI adds post-generation evals:
+
+```ts
+{
+  ...compactionResult,
+  evals: {
+    missing_asset_ids: string[];
+    warnings: string[];
+  };
+}
+```
+
+`anchors` are only used by evals when present in the dataset; they are not used to generate the summary.

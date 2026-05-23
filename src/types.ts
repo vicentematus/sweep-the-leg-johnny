@@ -35,13 +35,11 @@ export interface CompactionResult {
     profile: string;
     model: string;
     preserved_message_indexes: number[];
-    validation: ValidationResult;
     usage?: unknown;
   };
 }
 
-export interface ValidationResult {
+export interface EvalResult {
   missing_asset_ids: string[];
-  possibly_missing_critical_facts: string[];
   warnings: string[];
 }

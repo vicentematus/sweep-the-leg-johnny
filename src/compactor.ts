@@ -3,7 +3,6 @@ import { generateText, Output } from "ai";
 import { z } from "zod";
 import { buildCompactionPrompt } from "./prompt";
 import type { CompactionOptions, CompactionResult, ConversationRecord } from "./types";
-import { validateCompaction } from "./validation";
 
 export const defaultOptions: CompactionOptions = {
   model: process.env.ANTHROPIC_MODEL ?? "claude-haiku-4-5",
@@ -47,11 +46,6 @@ export async function compactConversation(
   });
 
   const summary = result.output.summary;
-  const validation = validateCompaction({
-    conversation,
-    summary,
-    preservedMessages,
-  });
 
   return {
     summary,
@@ -61,7 +55,6 @@ export async function compactConversation(
       profile: conversation.profile,
       model: resolved.model,
       preserved_message_indexes: preservedMessageIndexes,
-      validation,
       usage: result.usage,
     },
   };
