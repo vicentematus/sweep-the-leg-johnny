@@ -62,6 +62,7 @@ Para que asi otro LLM, o la continuacion del chat lo pueda leer. Si corres el CL
 ## Observaciones
 
 - Para verificar que el LLM compacto correctamente, existe el [evals.ts](src/evals.ts) que es "deterministico" (regex, pattern matching). Lo deje así por temas de scope. Una versión mejorada de este sería quizas simplemente pasarselo a otro LLM y que decida si la compactación es correcta o no. Quizás este es el approach correcto. Pero no lo refactorize por temas de tiempo. ([https://vercel.com/kb/guide/an-introduction-to-evals](https://vercel.com/kb/guide/an-introduction-to-evals))
+- En producción investigaria sobre librerias o servicios existentes que ayuden a abstraer el tema de la compactación, en vez de hacer algo custom.
 
 ### Qué se conserva
 
