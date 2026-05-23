@@ -1,4 +1,36 @@
-## Challenge HeyMark
+# Challenge HeyMark
+
+## Uso del CLI
+
+Antes de correr el compactador, copiar el ejemplo de env y completar la API key:
+
+```bash
+cd src
+cp .env.example .env
+```
+
+En `src/.env`, completar:
+
+```bash
+ANTHROPIC_API_KEY=
+ANTHROPIC_MODEL=claude-haiku-4-5
+PRESERVED_TAIL_MESSAGES=8
+INCLUDE_SYSTEM_PROMPT=true
+```
+
+Instalar dependencias:
+
+```bash
+bun install
+```
+
+Correr el compactador:
+
+```bash
+bun run compact -- --conversation analytics-deep-01 --output out/analytics-deep-01.json
+```
+
+Revisar la carpeta src/out y ver como quedaria un JSON con la informacion resumida.
 
 ## Desarrollo
 
