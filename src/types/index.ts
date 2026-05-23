@@ -27,6 +27,13 @@ export interface CompactionOptions {
   includeSystemPrompt: boolean;
 }
 
+export type PreservationReason =
+  | "recent_tail"
+  | "latest_user_request"
+  | "constraint_or_decision"
+  | "important_reference"
+  | "important_tool_result";
+
 export interface CompactionResult {
   summary: string;
   preserved_messages: ModelMessage[];
@@ -35,6 +42,7 @@ export interface CompactionResult {
     profile: string;
     model: string;
     preserved_message_indexes: number[];
+    preservation_reasons: Record<number, PreservationReason[]>;
     usage?: unknown;
   };
 }
