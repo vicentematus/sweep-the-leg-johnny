@@ -2,7 +2,7 @@
 
 Bun + TypeScript implementation for the HeyMark conversation compaction challenge.
 
-The compactor follows the strategy from `../HEURISTICS.md`:
+The compactor follows the strategy from `../prompts/HEURISTICS.md`:
 
 1. Select messages that must survive verbatim.
 2. Ask Claude to summarize the older/lower-risk messages with explicit HeyMark importance heuristics.
