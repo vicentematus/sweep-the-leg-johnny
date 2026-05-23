@@ -48,6 +48,10 @@ export interface CompactionResult {
 }
 
 export interface EvalResult {
+  passes: boolean;
+  risk_level: "low" | "medium" | "high";
   missing_asset_ids: string[];
+  missing_critical_fact_markers: string[];
+  unsupported_claims: string[];
   warnings: string[];
 }
