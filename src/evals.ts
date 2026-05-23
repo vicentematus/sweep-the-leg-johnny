@@ -1,4 +1,4 @@
-import type { CompactionResult, ConversationRecord, EvalResult } from "./types";
+import type { CompactionResult, ConversationRecord, EvalResult } from "./types/index";
 
 export function evaluateCompaction(input: {
   conversation: ConversationRecord;

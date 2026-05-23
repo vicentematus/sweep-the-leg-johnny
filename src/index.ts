@@ -1,5 +1,5 @@
 import { compactConversation, defaultOptions } from "./compactor";
-import { findConversation, readConversations } from "./dataset";
+import { findConversation, readConversations } from "./utils/conversations-loader";
 import { evaluateCompaction } from "./evals";
 import { mkdir } from "node:fs/promises";
 import { dirname } from "node:path";

@@ -1,4 +1,4 @@
-import type { ConversationRecord } from "./types";
+import type { ConversationRecord } from "../types/index";
 
 export async function readJsonl<T>(path: string): Promise<T[]> {
   const text = await Bun.file(path).text();

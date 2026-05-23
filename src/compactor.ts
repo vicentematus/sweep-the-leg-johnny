@@ -2,7 +2,7 @@ import { anthropic } from "@ai-sdk/anthropic";
 import { generateText, Output } from "ai";
 import { z } from "zod";
 import { buildCompactionPrompt } from "./prompt";
-import type { CompactionOptions, CompactionResult, ConversationRecord } from "./types";
+import type { CompactionOptions, CompactionResult, ConversationRecord } from "./types/index";
 
 export const defaultOptions: CompactionOptions = {
   model: process.env.ANTHROPIC_MODEL ?? "claude-haiku-4-5",
